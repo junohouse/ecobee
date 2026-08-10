@@ -369,7 +369,7 @@ impl DriverModule for EcobeeHap {
     fn discover(&self, driver_id: &str, state: &Value, input: &Args) -> (SetupStep, Value) {
         if driver_id != THERMOSTAT {
             // Sensors are found by browsing the thermostat, never set up on their own.
-            return (SetupStep::Done { devices: Vec::new() }, Value::Null);
+            return (SetupStep::done(Vec::new()), Value::Null);
         }
         setup::run(state, input)
     }
@@ -860,6 +860,7 @@ mod setup {
                 driver_id: THERMOSTAT.into(),
                 properties: props,
                 verified: "paired over HomeKit".into(),
+                            ..Default::default()
             });
         }
 
@@ -881,10 +882,11 @@ mod setup {
                 driver_id: SENSOR.into(),
                 properties: props,
                 verified: "bridged by the thermostat".into(),
+                            ..Default::default()
             });
         }
 
-        (SetupStep::Done { devices: out }, Value::Null)
+        (SetupStep::done(out), Value::Null)
     }
 
     fn thermostat_name(list: &[&Value]) -> Option<String> {
