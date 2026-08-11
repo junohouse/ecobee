@@ -12,7 +12,7 @@ on:
 
 jobs:
   driver:
-    uses: junohouse/registry/.github/workflows/certified.yml@main
+    uses: junohouse/driver-ci/.github/workflows/certified.yml@main
     with:
       packages: '["hap"]'
     # The public build job this calls declares contents: write, and a called workflow
