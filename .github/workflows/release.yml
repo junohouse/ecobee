@@ -12,14 +12,12 @@ on:
 
 jobs:
   driver:
-    uses: junohouse/driver-ci/.github/workflows/driver.yml@main
+    uses: junohouse/registry/.github/workflows/certified.yml@main
     with:
       packages: '["hap"]'
-    # The publish job writes releases. A called workflow cannot request more permission
-    # than its caller was granted, and this repo's default token is read-only.
+    # The public build job this calls declares contents: write, and a called workflow
+    # cannot be granted more than its caller has.
     permissions:
       contents: write
-    # Named rather than `inherit`. driver-ci lives in another organization, and `inherit`
-    # would hand it every secret this repo has instead of the one it needs.
-    secrets:
-      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+    # Same organisation now, so inheriting is not an export across an org boundary.
+    secrets: inherit
