@@ -3,7 +3,7 @@ id = "ecobee.hap.thermostat"
 name = "Ecobee Thermostat (HomeKit)"
 manufacturer = "Ecobee"
 version = "1.0.0"
-runtime = "native"
+runtime = "wasm"
 
 # The same hardware as `ecobee.thermostat`, reached over HomeKit on the LAN instead of the
 # cloud API. It keeps working when the internet does not, answers in milliseconds rather than

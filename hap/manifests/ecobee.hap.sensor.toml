@@ -3,7 +3,7 @@ id = "ecobee.hap.sensor"
 name = "Ecobee Room Sensor (HomeKit)"
 manufacturer = "Ecobee"
 version = "1.0.0"
-runtime = "native"
+runtime = "wasm"
 # A SmartSensor is bridged by the thermostat, so it inherits the address and the pairing —
 # there is nothing to pair a second time. Put it in the room it is actually in; that is what
 # makes "is anyone in the den?" answerable.
