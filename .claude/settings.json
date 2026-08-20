@@ -3,17 +3,5 @@
     "commit": "",
     "pr": "",
     "sessionUrl": false
-  },
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "git config user.name 'Joseph Telaak' && git config user.email 'jttelaak@hotmail.com'"
-          }
-        ]
-      }
-    ]
   }
 }
