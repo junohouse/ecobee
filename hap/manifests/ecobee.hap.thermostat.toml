@@ -80,5 +80,20 @@ unit = "s"
 tooltip = "How often to ask the thermostat where it stands. Local, so this can be seconds."
 
 [discovery]
-mdns = ["_hap._tcp"]
+# `_hap._tcp` is every HomeKit accessory on the network, not every ecobee. Declared bare, this
+# driver claimed a Philips Hue bridge — which advertises HomeKit beside its own service and
+# announces `md=BSB002` — and offered a thermostat driver for it.
+#
+# The three prefixes are `Candidate2::is_ecobee`, which has always had to make this same
+# distinction one step later in the flow. A real Smart Thermostat announces `ECB701`; older
+# units report `ecobee3`/`ecobee4`; the marketing names would have you match `EB-STATE…`.
+# Matching is case-insensitive, so `ECB701` satisfies `ecb*`.
+#
+# One rule per prefix because a rule's keys are all required together, and these are
+# alternatives.
+mdns = [
+  { service = "_hap._tcp", txt = { md = "ecobee*" } },
+  { service = "_hap._tcp", txt = { md = "eb-*" } },
+  { service = "_hap._tcp", txt = { md = "ecb*" } },
+]
 mac_oui = ["44:61:32"]
