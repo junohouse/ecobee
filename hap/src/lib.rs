@@ -35,7 +35,7 @@ pub struct EcobeeHap;
 
 // HAP service and characteristic types. Accessories report the short form ("4A"), but the
 // specification writes them as full UUIDs, and some firmwares send those — `hap_type`
-// normalises both to the same thing.
+// normalizes both to the same thing.
 const SRV_THERMOSTAT: &str = "4A";
 const SRV_TEMPERATURE: &str = "8A";
 const SRV_OCCUPANCY: &str = "86";
